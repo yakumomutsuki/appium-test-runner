@@ -1,5 +1,5 @@
 # appium-test-runner
-appium-test-runnerは、Appiumをもとに、Rubyによって動作検証を行うために作成されたテストフレームワークです。
+appium-test-runnerは、Appiumを利用してiOS / AndroidのUIテストを行うために作成したテストフレームワークです。Appium自体は、Java、Pythonでも動作しますが、本フレームワークではRubyを使用しています。
 
 - ディレクトリ構成
 ```
@@ -11,10 +11,14 @@ root/
 　│　└ screenshot/
 ```
 
+## Test実行
+RubyMineを使用して、`test`ディレクトリ配下にあるスクリプトを実行してください。  
+RSpecではなく、TestUnitを使用しています。
+
 ## 辞書ファイルの置き場
 RubyMine(Intellij)使用時に、英単語として認識せずにwarningが表示されます。辞書登録を行うことにより、warningを回避します。(※Inspections -> Spelling -> Typoのチェックを外したらwarningが出なくなりますが、タイポミスのチェックも消えるため、これは行い行いません。)
 
-`.\appium\.idea\dictionaries` 直下のxmlファイルを編集してください。
+`.\.idea\dictionaries` 直下のxmlファイルを編集してください。
 
 ## 心構え
 テスト自動化にあたっての心構えを引用します。UIテストの自動化は割に合わないことがあるため、すぐに確認すべき箇所は手動で行ってください。ただし何度も同じようなテストを行っていく場合にはこの限りではなく、リリースする前に全般的なロジックをチェックするといったようなものは、テスト自動化の範囲内のものとしてとらえるべきです。
