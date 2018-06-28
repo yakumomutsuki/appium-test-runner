@@ -3,7 +3,14 @@
 # License:: Ruby license.
 
 module Resources
+  # Exceptions
   module Exceptions
+    def argument_name_check(os_name)
+      return if %w[ios android].include?(os_name.downcase)
+      e = WrongNameArgumentException.new 'iOS or Android'
+      raise e
+    end
+
     # WrongNameArgumentException
     class WrongNameArgumentException < RuntimeError
       def initialize(comment)
