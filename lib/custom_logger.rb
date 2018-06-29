@@ -1,3 +1,7 @@
+# Author:: Munetaka Oi.
+# Copyright:: Copyright (c) 2018 Munetaka Oi
+# License:: Ruby license.
+
 require 'logger'
 
 # CustomLogger Class is a Extends of Logger Class.
