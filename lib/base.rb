@@ -2,8 +2,8 @@
 # Copyright:: Copyright (c) 2018 Munetaka Oi
 # License:: Ruby license.
 
-require './resources'
-require './custom_logger'
+require './lib/resources'
+require './lib/custom_logger'
 
 # Base Class
 #   Implements of Log, check on argument.class Base
