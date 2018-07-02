@@ -53,6 +53,40 @@ class BaseAction < Base
     CGI.pretty(@driver.page_source)
   end
 
+  # ===
+  # The following methods incorporate Appium_lib methods.
+  # ===
+  def fetch_text(pkg_name, component)
+    target = target_string_builder(pkg_name, component)
+    wait(target: target)
+    @driver.find_element(:id, target).text
+  end
+
+  def send_keys(pkg_name, component, numbers)
+    target = target_string_builder(pkg_name, component)
+    wait(target: target)
+    @driver.find_element(:id, target).send_keys(numbers)
+  end
+
+  def click(pkg_name, component)
+    target = target_string_builder(pkg_name, component)
+    wait(target: target)
+    @driver.find_element(:id, target).click
+  end
+
+  # find a component, that will not appear then return false
+  # @return true or false
+  def component_appearance?(pkg_name, component)
+    target = target_string_builder(pkg_name, component)
+    wait(target: target, timeout: 10)
+  rescue Selenium::WebDriver::Error::TimeOutError
+    false
+  end
+
+  def target_string_builder(resource, id)
+    resource + ':id/' + id
+  end
+
   private
 
   # Wait until element appearing.
