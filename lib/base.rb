@@ -13,7 +13,7 @@ class Base
 
   attr_accessor :log
 
-  def initialize(os_name:)
+  def initialize(os_name:, app_name:)
     argument_name_check(os_name)
     log_path = "#{root_dir}/test/logs/#{Time.now.strftime('%Y%m%d')}.log"
     @log = CustomLogger.new(log_path)
