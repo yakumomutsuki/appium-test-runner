@@ -1,0 +1,8 @@
+.idea/
+*.log
+apps/*
+!.gitkeep
+test/logs/*
+!.gitkeep
+test/screenshot/*
+!.gitkeep
