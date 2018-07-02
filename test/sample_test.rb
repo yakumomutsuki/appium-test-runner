@@ -1,3 +1,7 @@
+# Author:: Munetaka Oi.
+# Copyright:: Copyright (c) 2018 Munetaka Oi
+# License:: Ruby license.
+
 require 'test/unit'
 require './lib/base_action'
 
