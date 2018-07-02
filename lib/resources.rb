@@ -24,24 +24,19 @@ module Resources
   # AppiumOptions
   module AppiumOptions
     def opts_setting(root:, os_name:, app_name:)
-      opts = { caps: nil, appium_lib: nil }
+      opts = { caps: {},
+               appium_lib: { wait_timeout: 30, wait_interval: 1 } }
+      app_path = "#{root}/#{app_name}"
       opts[:caps] = if os_name.casecmp('android').zero?
-                      android_caps(root, app_name)
+                      { deviceName: :android,
+                        platformName: :android,
+                        app: app_path }
                     else
-                      ios_caps(root, app_name)
+                      { deviceName: :iOS,
+                        platformName: :iOS,
+                        app: app_path }
                     end
-      opts[:appium_lib] = { wait_timeout: 30, wait_interval: 1 }
       opts
-    end
-
-    def android_caps(root, app_name)
-      app_path = "#{root}/#{app_name}"
-      { deviceName: :android, platformName: :android, app: app_path }
-    end
-
-    def ios_caps(root, app_name)
-      app_path = "#{root}/#{app_name}"
-      { deviceName: :iOS, platformName: :iOS, app: app_path }
     end
   end
 end
