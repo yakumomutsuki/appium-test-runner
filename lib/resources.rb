@@ -26,7 +26,7 @@ module Resources
     def opts_setting(root:, os_name:, app_name:)
       opts = { caps: {},
                appium_lib: { wait_timeout: 30, wait_interval: 1 } }
-      app_path = "#{root}/#{app_name}"
+      app_path = "#{root}/apps/#{app_name}"
       opts[:caps] = if os_name.casecmp('android').zero?
                       os_name_setting(:android, app_path)
                     else
