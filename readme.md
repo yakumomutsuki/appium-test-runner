@@ -11,6 +11,16 @@ root/
 　│　└ screenshot/
 ```
 
+## 環境構築
+
+以下のコマンドをコンソール上で実行してください。appium-test-runnerというディレクトリが作成され、 `bundle install`を行うことで、Rubyの実行時に必要なgemを取得します。
+
+```
+$ git clone https://github.com/yakumomutsuki/appium-test-runner.git
+$ cd appium-test-runner
+$ bundle install
+```
+
 ## Test実行
 RubyMineを使用して、`test`ディレクトリ配下にあるスクリプトを実行してください。  
 RSpecではなく、TestUnitを使用しています。
