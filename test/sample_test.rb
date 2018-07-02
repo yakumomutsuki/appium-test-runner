@@ -6,7 +6,7 @@ class SampleTest < Test::Unit::TestCase
   # Called before every test method runs. Can be used
   # to set up fixture information.
   def setup
-    @action = BaseAction.new(os_name: 'ios')
+    @action = BaseAction.new(os_name: 'ios', app_name: 'test.apk')
   end
 
   # Called after every test method runs. Can be used to tear
@@ -17,8 +17,8 @@ class SampleTest < Test::Unit::TestCase
   end
 
   # Fake test
-  def test_fail
+  def test_one
 
-    fail('Not implemented')
+
   end
 end

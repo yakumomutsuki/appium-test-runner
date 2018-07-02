@@ -6,7 +6,7 @@ require './lib/base'
 
 # BaseAction
 class BaseAction < Base
-  def initialize(os_name:)
-    super(os_name: os_name)
+  def initialize(os_name:, app_name:)
+    super
   end
 end
