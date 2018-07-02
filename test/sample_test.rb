@@ -17,7 +17,6 @@ class SampleTest < Test::Unit::TestCase
 
   # Fake test
   def test_one
-
-
+    @action.take_screenshot(method_name)
   end
 end
