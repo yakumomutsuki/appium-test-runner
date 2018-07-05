@@ -25,7 +25,6 @@ class BaseAction < Base
 
   # When if test close, call this method.
   def quit
-    @log.info('end')
     @log.close
     @driver.quit
   end
@@ -33,12 +32,13 @@ class BaseAction < Base
   # write a error log, xpath info, and save screenshot.
   def error_handling(scenario_name:, error_obj:)
     @log.error(scenario_name.to_s)
-    @log.backtrace(error_obj)
     @log.info(fetch_page_source)
+    @log.backtrace(error_obj)
 
     take_screenshot(scenario_name)
 
     warn(scenario_name.to_s)
+    puts fetch_page_source
     raise error_obj
   end
 
@@ -53,39 +53,41 @@ class BaseAction < Base
     CGI.pretty(@driver.page_source)
   end
 
-  # ===
-  # The following methods incorporate Appium_lib methods.
-  # ===
-  def fetch_text(pkg_name, component)
-    target = target_string_builder(pkg_name, component)
-    wait(target: target)
-    @driver.find_element(:id, target).text
+  # Action Module
+  module Action
+    def fetch_text(pkg_name:, component:)
+      target = target_string_builder(pkg_name, component)
+      wait(target: target)
+      @driver.find_element(:id, target).text
+    end
+
+    def send_keys(pkg_name:, component:, numbers:)
+      target = target_string_builder(pkg_name, component)
+      wait(target: target)
+      @driver.find_element(:id, target).send_keys(numbers)
+    end
+
+    def click(pkg_name:, component:)
+      target = target_string_builder(pkg_name, component)
+      wait(target: target)
+      @driver.find_element(:id, target).click
+    end
+
+    # find a component, that will not appear then return false
+    # @return true or false
+    def component_appearance?(pkg_name:, component:)
+      target = target_string_builder(pkg_name, component)
+      wait(target: target, timeout: 10)
+    rescue Selenium::WebDriver::Error::TimeOutError
+      false
+    end
+
+    def target_string_builder(resource, id)
+      resource + ':id/' + id
+    end
   end
 
-  def send_keys(pkg_name, component, numbers)
-    target = target_string_builder(pkg_name, component)
-    wait(target: target)
-    @driver.find_element(:id, target).send_keys(numbers)
-  end
-
-  def click(pkg_name, component)
-    target = target_string_builder(pkg_name, component)
-    wait(target: target)
-    @driver.find_element(:id, target).click
-  end
-
-  # find a component, that will not appear then return false
-  # @return true or false
-  def component_appearance?(pkg_name, component)
-    target = target_string_builder(pkg_name, component)
-    wait(target: target, timeout: 10)
-  rescue Selenium::WebDriver::Error::TimeOutError
-    false
-  end
-
-  def target_string_builder(resource, id)
-    resource + ':id/' + id
-  end
+  extend Action
 
   private
 
