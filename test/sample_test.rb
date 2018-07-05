@@ -49,4 +49,30 @@ class SampleTest < Test::Unit::TestCase
   rescue StandardError => e
     @action.error_handling(scenario_name: method_name, error_obj: e)
   end
+
+  # Sample test
+  # expected value is wrong
+  def test_sample2
+
+    # Search Accessibility Area
+    target = '//android.widget.TextView[@content-desc="Accessibility"]'
+    element = @action.driver.find_element(xpath: target)
+    assert_equal(
+      'App',
+      element.text
+    )
+
+  rescue StandardError => e
+    @action.error_handling(scenario_name: method_name, error_obj: e)
+  end
+
+  # Sample test
+  # catch the error
+  def test_sample3
+
+    @action.tap_non_exist_elememnt
+
+  rescue StandardError => e
+    @action.error_handling(scenario_name: method_name, error_obj: e)
+  end
 end

@@ -13,4 +13,8 @@ class SampleActionAndroid < BaseAction
   def tap_App
     @driver.find_element(xpath: '//android.widget.TextView[@content-desc="App"]').click
   end
+
+  def tap_non_exist_elememnt
+    @driver.find_element(xpath: '//android.widget.TextView[@content-desc="xxx"]').click
+  end
 end
