@@ -23,9 +23,10 @@ class SampleTest < Test::Unit::TestCase
     @action.quit
   end
 
-  # Fake test
+  # Sample test
   def test_sample1
 
+    # Search Accessibility Area
     target = '//android.widget.TextView[@content-desc="Accessibility"]'
     element = @action.driver.find_element(xpath: target)
     assert_equal(
@@ -33,9 +34,17 @@ class SampleTest < Test::Unit::TestCase
       element.text
     )
 
-    element.click
+    # Using the tap_App method implemented in SampleActionAndroid class,
+    # transit to screen.
+    @action.tap_App
 
-#    @action.click(pkg_name: 'android', component: 'text1')
+    # Search Action Bar Area
+    target = '//android.widget.TextView[@content-desc="Action Bar"]'
+    element = @action.driver.find_element(xpath: target)
+    assert_equal(
+      'Action Bar',
+      element.text
+    )
 
   rescue StandardError => e
     @action.error_handling(scenario_name: method_name, error_obj: e)
